@@ -1,2 +1,78 @@
 # airqualitydata
 Air Quality Data from OpenAQ into Snowflake OpenFlow (Apache NiFi), Streamnative (Apache Kafka), PostgreSQL (Crunchy Bridge)
+
+
+#### Postgresql Table
+
+````
+
+
+
+CREATE TABLE AIR_QUALITY_DATA (
+    owner VARCHAR(255),
+    city VARCHAR(512),
+    timezone VARCHAR(255),
+    latitude FLOAT,
+    periodlabel VARCHAR(255),
+    locality VARCHAR(512),
+    parameterName VARCHAR(255),
+    datetimefrom TIMESTAMP,
+    datetimeLast TIMESTAMP,
+    uuid VARCHAR(255),
+    name VARCHAR(512),
+    id VARCHAR(255),
+    state VARCHAR(25),
+    value FLOAT,
+    datetimeto TIMESTAMP,
+    longitude FLOAT
+);
+
+````
+
+#### Snowflake Table and Snowflake Managed Iceberg Table
+
+````
+CREATE ICEBERG TABLE air_quality_data (
+    owner STRING,
+    city STRING,
+    timezone STRING,
+    latitude FLOAT,
+    periodlabel STRING,
+    locality STRING,
+    parameterName STRING,
+    datetimefrom TIMESTAMP,
+    datetimeLast TIMESTAMP,
+    uuid STRING,
+    name STRING,
+    id STRING, 
+    state STRING,
+    value FLOAT,
+    datetimeto TIMESTAMP,
+    longitude FLOAT
+)
+CATALOG = 'SNOWFLAKE'
+EXTERNAL_VOLUME = 'TRANSCOM_TSPANNICEBERG_EXTVOL'
+BASE_LOCATION = 'airqualitydata/';
+
+CREATE TABLE air_quality_data_sf (
+    owner STRING,
+    city STRING,
+    timezone STRING,
+    latitude FLOAT,
+    periodlabel STRING,
+    locality STRING,
+    parameterName STRING,
+    datetimefrom TIMESTAMP,
+    datetimeLast TIMESTAMP,
+    uuid STRING,
+    name STRING,
+    id STRING, 
+    state STRING,
+    value FLOAT,
+    datetimeto TIMESTAMP,
+    longitude FLOAT
+);
+
+select * from air_quality_data_sf;
+
+````
