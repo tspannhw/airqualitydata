@@ -79,4 +79,10 @@ CREATE TABLE air_quality_data_sf (
 
 select * from air_quality_data_sf;
 
+select AVG(value), (owner || ' - ' || locality || ' - ' || parametername) as sensor, datetimeto
+from air_quality_data_sf 
+GROUP by datetimeto, sensor
+order by datetimeto desc;
+
+
 ````
