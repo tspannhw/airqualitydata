@@ -6,6 +6,9 @@ Air Quality Data from OpenAQ into Snowflake OpenFlow (Apache NiFi), Streamnative
 
 ````
 
+DROP TABLE public.air_quality_data;
+
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO application;
 
 
 CREATE TABLE AIR_QUALITY_DATA (
@@ -16,17 +19,16 @@ CREATE TABLE AIR_QUALITY_DATA (
     periodlabel VARCHAR(255),
     locality VARCHAR(512),
     parameterName VARCHAR(255),
-    datetimefrom TIMESTAMP,
-    datetimeLast TIMESTAMP,
+    datetimefrom VARCHAR(255),
+    datetimeLast VARCHAR(255),
     uuid VARCHAR(255),
     name VARCHAR(512),
     id VARCHAR(255),
     state VARCHAR(25),
     value FLOAT,
-    datetimeto TIMESTAMP,
+    datetimeto VARCHAR(255),
     longitude FLOAT
 );
-
 ````
 
 #### Snowflake Table and Snowflake Managed Iceberg Table
